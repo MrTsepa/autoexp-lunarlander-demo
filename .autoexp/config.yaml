@@ -1,0 +1,11 @@
+# autoexp project configuration
+
+editable_files:
+  - "config.yaml"
+  - "train.py"
+
+locked_files:
+  - "eval.py"
+  - ".autoexp/*"
+
+abort_rules: []

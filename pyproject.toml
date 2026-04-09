@@ -1,0 +1,9 @@
+[project]
+name = "autoexp-poc"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "stable-baselines3>=2.7",
+    "gymnasium[box2d]>=1.0",
+    "pyyaml>=6.0",
+]

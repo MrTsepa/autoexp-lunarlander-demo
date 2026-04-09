@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+runs/
+.autoexp/experiments.db
+.autoexp/experiments.db-journal
