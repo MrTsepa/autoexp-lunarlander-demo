@@ -3,7 +3,7 @@ algorithm: PPO
 env: LunarLander-v3
 
 # Architecture
-net_arch: [64, 64]
+net_arch: [256, 256]
 activation: tanh
 
 # PPO hyperparameters
@@ -19,6 +19,6 @@ vf_coef: 0.5
 max_grad_norm: 0.5
 
 # Training
-total_timesteps: 100000
+total_timesteps: 300000
 n_envs: 4
 seed: 42
