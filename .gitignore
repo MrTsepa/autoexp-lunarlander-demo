@@ -5,3 +5,4 @@ runs/
 .autoexp/experiments.db
 .autoexp/experiments.db-journal
 skills-lock.json
+uv.lock
