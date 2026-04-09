@@ -1,4 +1,4 @@
-# LunarLander PPO training config
+# LunarLander PPO training config — baseline experiment
 algorithm: PPO
 env: LunarLander-v3
 
