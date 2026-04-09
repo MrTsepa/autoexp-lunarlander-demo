@@ -4,3 +4,4 @@ __pycache__/
 runs/
 .autoexp/experiments.db
 .autoexp/experiments.db-journal
+skills-lock.json
