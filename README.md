@@ -1,16 +1,31 @@
 # LunarLander PPO Benchmark with autoexp
 
-Autonomous ML experiment tracking demo: solving LunarLander-v3 with PPO using [autoexp](https://github.com/anthropics/claude-code/tree/main/.skills/autoexp) (Claude Code skill for autonomous ML research).
+Autonomous ML experiment tracking demo: solving LunarLander-v3 with PPO using the [autoexp](https://github.com/MrTsepa/autoexp) Claude Code skill for autonomous ML research.
 
 ## How it works
 
-The entire experiment loop was kicked off with a single Claude Code command:
+The entire experiment loop was driven by giving Claude Code this prompt:
 
 ```
-/autoexp
+You are an autonomous ML research agent working on solving LunarLander-v3 with PPO.
+
+Read .autoexp/program.md for your goal. The autoexp toolkit is at:
+  python3 .claude/skills/autoexp/scripts/autoexp.py <command>
+
+Your workflow each cycle:
+1. python3 .claude/skills/autoexp/scripts/autoexp.py status
+2. python3 .claude/skills/autoexp/scripts/autoexp.py results --last 5 --json
+3. If training just finished: run eval, analyze, keep or revert
+4. If nothing running: propose next experiment, edit config.yaml, validate, commit, train
+5. python3 .claude/skills/autoexp/scripts/autoexp.py report > RESEARCH.md
+
+Train command: uv run python train.py
+Eval command: uv run python eval.py runs/latest/model 100
+
+Keep experiments under 5 min. Start by checking the current state, then continue iterating.
 ```
 
-This invokes the [autoexp skill](https://github.com/anthropics/claude-code/tree/main/.skills/autoexp), which reads the research goal from `.autoexp/program.md`, then autonomously:
+This was invoked via the `/autoexp` skill command, which reads the research goal from `.autoexp/program.md`, then autonomously:
 
 1. Reviews prior experiment results
 2. Formulates a hypothesis for what to try next
@@ -18,7 +33,7 @@ This invokes the [autoexp skill](https://github.com/anthropics/claude-code/tree/
 4. Runs training and evaluation
 5. Decides whether to keep or revert based on metrics
 
-All 4 experiments — from the initial baseline to the solved configuration — were run in a single conversation with no manual intervention beyond the initial `/autoexp` prompt.
+All 4 experiments — from the initial baseline to the solved configuration — were run in a single conversation with no manual intervention beyond the initial `/autoexp` call.
 
 ## Results
 
@@ -67,4 +82,16 @@ uv run python eval.py runs/latest/model 100
 
 ### autoexp skill
 
-Install the [autoexp](https://github.com/anthropics/claude-code/tree/main/.skills/autoexp) Claude Code skill to run autonomous experiments. Experiment history is tracked in `.autoexp/experiments.db`.
+Install the [autoexp](https://github.com/MrTsepa/autoexp) Claude Code skill:
+
+```bash
+npx skills add MrTsepa/autoexp
+```
+
+Then initialize the project:
+
+```bash
+python3 .claude/skills/autoexp/scripts/autoexp.py init
+```
+
+Edit `.autoexp/program.md` with your research goal and `.autoexp/config.yaml` with editable/locked file rules. Experiment history is tracked in `.autoexp/experiments.db`.
