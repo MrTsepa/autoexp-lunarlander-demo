@@ -4,7 +4,8 @@
 Solve LunarLander-v3 with PPO. Target: mean_reward >= 200 over 100 evaluation episodes (solved_rate >= 0.8).
 
 ## Current Best
-No experiments yet.
+auto_004: mean_reward=252.3, solved_rate=0.950 (target met!)
+Config: net_arch=[64,64], lr=1e-3, n_envs=8, gamma=0.999, ent_coef=0.01, 300k steps
 
 ## Search Space
 - Learning rate (1e-4 to 1e-2)
